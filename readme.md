@@ -10,8 +10,6 @@ Este é um Gerenciador de Tarefas desenvolvido com foco em persistência de dado
 
 ## ✨ Funcionalidades Especiais (Diferenciais)
 
-Para torná-lo um destaque no portfólio, foram implementados os seguintes recursos:
-
 1.  **Prioridade Visual:** Cada tarefa pode ser classificada como Alta (🔴), Média (🟡) ou Baixa (🟢) importância, refletida visualmente com um quadrado colorido.
 2.  **Observações Expansíveis:** Um ícone de seta (▼) permite expandir a tarefa, revelando um campo de texto (`<textarea>`) para adicionar **notas e observações** detalhadas.
 3.  **Edição Rápida:** O seletor de prioridade e o campo de notas permitem a **atualização** instantânea dos dados da tarefa.
@@ -23,4 +21,5 @@ Para torná-lo um destaque no portfólio, foram implementados os seguintes recur
 | :--- | :--- |
 | **HTML5 (Semântico)** | Estrutura da página e elementos de lista. |
 | **CSS3** | Estilização, responsividade (`@media queries`), e animações. |
+
 | **JavaScript (ES6+)** | Lógica de programação, manipulação do DOM e gerenciamento de dados no `localStorage`. |
