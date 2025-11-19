@@ -1,0 +1,313 @@
+/* RESET básico para garantir a consistência */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f4f7f6; /* Fundo cinza claro */
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Alinha no topo */
+    min-height: 100vh;
+    padding: 30px 10px;
+}
+
+/* Container Principal */
+.container {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 500px; /* Limite de largura para desktop */
+}
+
+h1 {
+    color: #333;
+    text-align: center;
+    margin-bottom: 25px;
+    font-size: 1.8em;
+}
+
+/* Área de Input (Campo e Botão) */
+.input-area {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+#taskInput {
+    flex-grow: 1; /* Permite que o campo de input ocupe o espaço restante */
+    padding: 12px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 1em;
+    transition: border-color 0.3s;
+}
+
+#taskInput:focus {
+    border-color: #4A90E2; /* Cor azul ao focar */
+    outline: none;
+}
+
+#addTaskBtn {
+    background-color: #4A90E2;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s;
+}
+
+#addTaskBtn:hover {
+    background-color: #357ABD;
+}
+
+/* Lista de Tarefas */
+#taskList {
+    list-style: none; /* Remove os marcadores de lista */
+    padding: 0;
+}
+
+#taskList li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f9f9f9;
+    padding: 12px;
+    margin-bottom: 8px;
+    border-radius: 8px;
+    border-left: 5px solid #4A90E2; /* Borda de destaque */
+    transition: all 0.3s ease;
+}
+
+#taskList li.completed {
+    border-left: 5px solid #7ED321; /* Borda verde para concluídas */
+    background-color: #e9fbe5;
+    opacity: 0.7;
+}
+
+#taskList li span {
+    flex-grow: 1;
+    font-size: 1.1em;
+    color: #555;
+    word-break: break-word; /* Garante que o texto longo não quebre o layout */
+    margin-right: 15px;
+}
+
+#taskList li.completed span {
+    text-decoration: line-through; /* Risca o texto da tarefa concluída */
+    color: #999;
+}
+
+/* Botões de Ação na Tarefa */
+.complete-btn, .delete-btn {
+    padding: 8px 12px;
+    margin-left: 5px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.complete-btn {
+    background-color: #7ED321; /* Verde */
+    color: white;
+}
+
+.delete-btn {
+    background-color: #D0021B; /* Vermelho */
+    color: white;
+}
+
+.complete-btn:hover { background-color: #61A81A; }
+.delete-btn:hover { background-color: #A90016; }
+
+
+/* SEÇÃO DE FILTROS */
+.filters {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.filters button {
+    background-color: #eee;
+    color: #555;
+    border: 1px solid #ddd;
+    padding: 8px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.filters button:hover {
+    background-color: #ddd;
+}
+
+.filters button.active {
+    background-color: #4A90E2;
+    color: white;
+    border-color: #4A90E2;
+}
+
+/* RESPONSIVIDADE PARA CELULARES */
+@media (max-width: 600px) {
+    .container {
+        padding: 20px;
+        margin-top: 10px;
+    }
+
+    h1 {
+        font-size: 1.5em;
+    }
+    
+    .input-area {
+        flex-direction: column; /* Empilha campo e botão */
+    }
+
+    #addTaskBtn {
+        width: 100%;
+    }
+
+    #taskList li {
+        flex-wrap: wrap; /* Permite que os botões quebrem a linha se necessário */
+    }
+
+    #taskList li span {
+        margin-bottom: 10px;
+        width: 100%;
+    }
+}
+
+/* --- ESTILOS DE PRIORIDADE E DETALHES EXPANSÍVEIS --- */
+
+#taskList li {
+    /* Adiciona Flexbox para o item principal */
+    display: flex; 
+    flex-direction: column; /* Coloca main content e details em colunas */
+    /* ... (restante do seu estilo li permanece) ... */
+}
+
+.task-main-content {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 12px 0; /* Espaçamento interno */
+}
+
+.task-main-content span {
+    flex-grow: 1;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 5px;
+}
+
+/* Quadrado de Prioridade (Novo Elemento) */
+.priority-square {
+    width: 12px;
+    height: 12px;
+    margin-right: 15px;
+    border-radius: 3px;
+    flex-shrink: 0; /* Não permite que encolha */
+}
+
+/* Cores das Prioridades */
+.priority-low .priority-square {
+    background-color: #7ED321; /* Verde */
+}
+.priority-medium .priority-square {
+    background-color: #F8E71C; /* Amarelo */
+}
+.priority-high .priority-square {
+    background-color: #D0021B; /* Vermelho */
+}
+
+/* Seta de Expansão (Novo Elemento) */
+.toggle-arrow {
+    font-size: 0.7em;
+    margin-left: 10px;
+    margin-right: 15px;
+    cursor: pointer;
+    transition: transform 0.3s;
+    user-select: none; /* Não selecionável */
+}
+
+/* Detalhes Expansíveis */
+.task-details {
+    width: 100%;
+    max-height: 0; /* Altura 0 para começar escondido */
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out, padding 0.3s ease-in-out;
+    padding: 0 15px;
+    border-top: 1px solid #eee;
+    margin-top: -1px; /* Para "colar" no item de cima */
+}
+
+.task-details.expanded {
+    max-height: 300px; /* Suficientemente grande para mostrar o conteúdo */
+    padding: 15px;
+    background-color: #f0f3f5;
+    border-radius: 0 0 8px 8px;
+}
+
+/* Estilos dos campos de detalhe (select e textarea) */
+.priority-selector {
+    margin-bottom: 10px;
+}
+
+.task-details textarea, .task-details select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-top: 5px;
+    resize: vertical;
+    font-size: 0.9em;
+}
+
+.task-details label {
+    font-size: 0.9em;
+    font-weight: bold;
+    color: #666;
+}
+
+/* Mensagem de Sem Tarefas */
+.no-tasks {
+    text-align: center;
+    color: #777;
+    margin-top: 20px;
+    font-style: italic;
+}
+
+/* Responsividade (Ajuste para mobile) */
+@media (max-width: 600px) {
+    .task-main-content {
+        flex-wrap: wrap;
+    }
+    .task-main-content span {
+        order: 1; /* Força o texto para cima */
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    .priority-square {
+        order: 0; /* Mantém o quadrado no início */
+    }
+    .toggle-arrow {
+        order: 2; /* Move a seta para antes dos botões */
+    }
+    .action-buttons {
+        order: 3; /* Move os botões para o final */
+        margin-left: auto;
+    }
+    /* MEU DEUS QUE NEGOCIO DIFICIL AAAAAAAAAAAAAAAAAA */
+}
